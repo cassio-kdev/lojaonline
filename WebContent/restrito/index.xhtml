@@ -1,0 +1,65 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/template/layout.xhtml">
+	<ui:define name="content">
+		<h1>#{clienteBean.cliente.nome}</h1>
+		<h:form id="frmListaCliente">
+			<p:dataTable id="pnlListaCliente" widgetVar="tabelaCliente"
+				value="#{clienteBean.clientes}" var="cliente"
+				emptyMessage="Nenhum cliente encontrado." paginator="true" rows="8" >
+				<f:facet name="header">
+					<h:outputText value="Lista de cliente" />
+				</f:facet>
+				<p:column headerText="Código" sortBy="#{cliente.idUsuario}">
+					<h:outputText value="#{cliente.idUsuario}"></h:outputText>
+				</p:column>
+				<p:column headerText="Nome"  sortBy="#{cliente.nome}">
+					<h:outputText value="#{cliente.nome}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Login"  sortBy="#{cliente.login}">
+					<h:outputText value="#{cliente.login}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Email"  sortBy="#{cliente.email}">
+					<h:outputText value="#{cliente.email}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Novo" oncomplete="PF('dlgCadNovo').show();"
+						update=":frmNovoUsuario:pnlNovoUsuario" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog widgetVar="dlgCadNovo" closable="false" draggable="false"
+			resizable="false" header="Cadastro de usuário" modal="true">
+			<h:form id="frmNovoUsuario">
+				<p:messages />
+				<p:panelGrid id="pnlNovoUsuario" columns="2">
+					<p:outputLabel for="usuario" value="Nome" />
+					<p:inputText id="usuario" value="#{clienteBean.cliente.nome}" />
+
+					<p:outputLabel for="email" value="Email" />
+					<p:inputText id="email" value="#{clienteBean.cliente.email}" />
+
+					<p:outputLabel for="login" value="Login" />
+					<p:inputText id="login" value="#{clienteBean.cliente.login}" />
+
+					<p:outputLabel for="senha" value="Senha" />
+					<p:password id="senha" value="#{clienteBean.cliente.senha}" />
+
+				</p:panelGrid>
+				<p:panelGrid>
+					<p:commandButton value="Salvar"
+						actionListener="#{clienteBean.gravar(clienteBean.cliente)}"
+						update=":frmNovoUsuario"/>
+					<p:commandButton value="Cancelar"
+						oncomplete="PF('dlgCadNovo').hide();"
+						actionListener="#{clienteBean.gravar(clienteBean.limparCampos())}" />
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

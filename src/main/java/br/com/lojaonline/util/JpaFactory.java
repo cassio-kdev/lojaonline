@@ -10,11 +10,11 @@ public class JpaFactory {
 	private static EntityManager em;
 
 	public static EntityManager getEntityManager() {
-		if (factory == null) {
-			factory = Persistence.createEntityManagerFactory("default");
+		if (factory == null ) {
+			factory = Persistence.createEntityManagerFactory("loja-PU");
 		}
 
-		if (em == null) {
+		if (em == null || !em.isOpen()) {
 			em = factory.createEntityManager();
 		}
 		return em;

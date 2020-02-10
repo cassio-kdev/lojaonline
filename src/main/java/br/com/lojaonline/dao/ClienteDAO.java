@@ -19,6 +19,8 @@ public class ClienteDAO {
 	public boolean savaOuAtualiza(Cliente cliente) throws Exception {
 		boolean sucesso = false;
 		try {
+			if(!em.isOpen())
+				em = JpaFactory.getEntityManager();
 			em.getTransaction().begin();
 			if (cliente.getIdUsuario() == null) {
 				em.persist(cliente);
@@ -55,9 +57,14 @@ public class ClienteDAO {
 
 	public List<Cliente> listaDeClientes() throws Exception {
 		List<Cliente> lista = null;
+		try {
 		em.getTransaction().begin();
 		lista = em.createQuery("from Cliente order by nome").getResultList();
-		em.close();
+		}catch(Exception ex) {
+			throw ex;
+		}finally {
+			em.close();
+		}
 		return lista;
 	}
 
@@ -72,5 +79,13 @@ public class ClienteDAO {
 		 retorno = em.createQuery(hql, Cliente.class).setParameter("nome", "%"+nome+"%").getResultList();
 		return retorno;
 		
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 }

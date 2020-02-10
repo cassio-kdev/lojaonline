@@ -1,0 +1,32 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/layout.xhtml">
+	<ui:define name="topo">
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="frmNewUsuario">
+			<p:panelGrid id="frmPnlNewCadastro" columns="2">
+			
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" />
+
+				<p:outputLabel for="email" value="Email" />
+				<p:inputText id="email" />
+
+				<p:outputLabel for="login" value="Login" />
+				<p:inputText id="login" />
+				
+				<p:outputLabel for="senha" value="Senha" />
+				<p:password id="senha" />
+				
+				<p:outputLabel for="senha2" value="Confirme sua senha" />
+				<p:password id="senha2" />
+				
+			</p:panelGrid>
+		</h:form>
+		
+		
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,53 @@
+#frmLoginCss {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+
+#f {
+	position: absolute;
+	margin: -100px background-color: blue;
+}
+
+.topo-container {
+	margin-top: 10px;
+	height: 100px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.center-container {
+	margin-top:5;
+	height: 300px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	
+}
+
+.vertical-container {
+	text-align: left;
+	margin-top: 150px;
+	height: 100px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+#alinha-texto-esquerda{
+	text-align: left;
+}
+
+
+
+
